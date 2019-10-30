@@ -21,27 +21,27 @@ class LoginController extends CI_Controller {
 
 	public function login()
 	{
-		$data=array(
-			'email'   =>$_POST['email'],
-			'password'=>$_POST['password']
-			);
-		$user=$this->LoginModel->getUser('user',$data);
+	   $data=array(
+		'email'   =>$_POST['email'],
+		'password'=>$_POST['password']
+	   );
+	  $user=$this->LoginModel->getUser('user',$data);
 			
-			if (!empty($user)) {
-					
-					$userdata=array(
-						'user_name'=>$user[0]['name'],
-						'email'    =>$user[0]['email'],
-						'phone'    =>$user[0]['phone'],
-						);
+	   if (!empty($user)) {	
+	      
+	     $userdata=array(
+	        'user_name'=>$user[0]['name'],
+                'email'    =>$user[0]['email'],
+	 	'phone'    =>$user[0]['phone'],
+	      );
 
-					$this->session->set_userdata('loginUser',$userdata);
+             $this->session->set_userdata('loginUser',$userdata);
 
-					redirect('LoginController/logiUserPage');
-			}else{
-				 $this->session->set_flashdata('msg', 'User Not Found');
-                  redirect();
-			}
+ 	     redirect('LoginController/logiUserPage');
+	   }else{
+	     $this->session->set_flashdata('msg', 'User Not Found');
+	     redirect();
+	  }
 	}
 
 	public function signup()
